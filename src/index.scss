@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Averta';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/Averta-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Averta';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('assets/fonts/Averta-ExtraBold.woff2') format('woff2');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Averta, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  height: 100%;
+}
+
+#root {
+  background: #f7f5f5;
+  height: 100%;
+}
+
+h1 {
+  color: #008c73;
+  font-size: 55px;
+}
+
+h2 {
+  color: #001428;
+  font-size: 35px;
+}
+
+h3 {
+  color: #aaa;
+  font-size: 28px;
+}
+
+p {
+  color: #001428;
+  font-size: 18px;
+  padding: 10px 0;
+}
