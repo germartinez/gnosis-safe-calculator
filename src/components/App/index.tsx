@@ -39,6 +39,7 @@ const App = () => {
           <h3>Safe configuration</h3>
           <p>Number of owners:</p>
           <input
+            autoFocus
             type="number"
             value={numOwners || ''}
             onChange={handleNumOwnersChange}
