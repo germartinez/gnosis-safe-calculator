@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
-import GithubLogo from '../../assets/images/github.svg'
+import Footer from '../Footer'
 import './styles.scss'
 
 const App = () => {
@@ -46,15 +46,11 @@ const App = () => {
           />
           <button onClick={toggleCalcResult}>Get result</button>
         </div>
-        <div className={calcResultClasses}>Loading...</div>
+        <div className={calcResultClasses}>
+          <p>Loading...</p>
+        </div>
       </div>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://github.com/germartinez/gnosis-safe-calculator"
-      >
-        <img className="github" src={GithubLogo} alt="Safe Calculator Github" />
-      </a>
+      <Footer />
     </div>
   )
 }

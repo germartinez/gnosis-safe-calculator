@@ -28,12 +28,20 @@ html, body {
 }
 
 body {
-  background: #f7f5f5;
+  background: #F7F5F5;
+}
+
+body.dark-mode {
+  background: #18191A;
 }
 
 h1 {
-  color: #008c73;
+  color: #008C73;
   font-size: 55px;
+}
+
+.dark-mode h1 {
+  opacity: 0.7;
 }
 
 h2 {
@@ -41,13 +49,25 @@ h2 {
   font-size: 35px;
 }
 
+.dark-mode h2 {
+  color: #999999;
+}
+
 h3 {
-  color: #aaa;
+  color: #001428;
   font-size: 28px;
+}
+
+.dark-mode h3 {
+  color: #999999;
 }
 
 p {
   color: #001428;
   font-size: 18px;
   padding: 10px 0;
+}
+
+.dark-mode p {
+  color: #999999;
 }
