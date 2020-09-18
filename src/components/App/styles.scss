@@ -26,13 +26,14 @@ header {
   background: #FFFFFF;
   border-radius: 20px;
   box-shadow: 0 0 10px 0 rgba(33, 48, 77, 0.10);
-  padding: 30px;
+  padding: 20px 30px 30px 30px;
   width: 100%;
   z-index: 100;
+  transition: background-color 0.5s linear;
 }
 
 .dark-mode .calculator {
-  background: #242526;
+  background: #444444;
   box-shadow: none;
 }
 
@@ -44,12 +45,13 @@ input[type="number"] {
   width: 205px;
   font-size: 20px;
   outline: none;
+  transition: background-color 0.5s linear, border 0.5s linear, color 0.5s linear;
 }
 
 .dark-mode input[type="number"] {
-  background: #3A3B3C;
-  border: 1px solid #3A3B3C;
-  color: #B0B3B8;
+  background: #333333;
+  border: 1px solid #333333;
+  color: #AAAAAA;
 }
 
 button {
@@ -65,11 +67,11 @@ button {
   font-size: 20px;
   outline: none;
   cursor: pointer;
+  transition: opacity 0.5s linear;
 }
 
 .dark-mode button {
   opacity: 0.7;
-  color: #1A1A1A;
 }
 
 button:hover {
@@ -93,43 +95,15 @@ button:hover {
   top: 30px;
   height: 200px;
   z-index: 99;
+  transition: background-color 0.5s linear, top 0.3s linear, height 0.3s linear;
 }
 
 .dark-mode .calcResult {
-  background: RGBA(255, 255, 255, 0.1);
+  background: #333333;
   box-shadow: none;
-}
-
-@keyframes showCalc {
-  0% {
-    top: 30px;
-    height: 200px;
-  }
-  100% {
-    top: 180px;
-    height: 350px;
-  }
 }
 
 .showCalcResult {
   top: 180px;
   height: 350px;
-  animation: 0.5s showCalc;
-}
-
-@keyframes hideCalc {
-  0% {
-    top: 180px;
-    height: 350px;
-  }
-  100% {
-    top: 30px;
-    height: 200px;
-  }
-}
-
-.hideCalcResult {
-  top: 30px;
-  height: 200px;
-  animation: 0.5s hideCalc;
 }

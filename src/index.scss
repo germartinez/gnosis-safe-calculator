@@ -24,11 +24,14 @@
 }
 
 html, body {
+  margin: 0;
+  padding: 0;
   height: 100%;
 }
 
 body {
   background: #F7F5F5;
+  transition: background-color 0.5s linear;
 }
 
 body.dark-mode {
@@ -50,7 +53,7 @@ h2 {
 }
 
 .dark-mode h2 {
-  color: #999999;
+  color: #AAAAAA;
 }
 
 h3 {
@@ -59,15 +62,16 @@ h3 {
 }
 
 .dark-mode h3 {
-  color: #999999;
+  color: #AAAAAA;
 }
 
 p {
   color: #001428;
   font-size: 18px;
   padding: 10px 0;
+  width: 100%;
 }
 
 .dark-mode p {
-  color: #999999;
+  color: #AAAAAA;
 }
