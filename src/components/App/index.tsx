@@ -3,23 +3,35 @@ import classNames from 'classnames'
 import Web3 from 'web3'
 import Footer from '../Footer'
 import { getGasPrice } from '../../logic/gasOperations'
+import { estimateSafeSetupGas } from '../../logic/contractOperations'
 import './styles.scss'
+
+interface Costs {
+  gasPriceGwei: number
+  estimatedSetupGas: number
+  costEth: number
+}
 
 const App = () => {
   const [showCalcResult, setShowCalcResult] = useState<boolean>(false)
   const [numOwners, setNumOwners] = useState<number>(0)
-  const [gasPrice, setGasPrice] = useState<string | undefined>(undefined)
+  const [costs, setCosts] = useState<undefined | Costs>(undefined)
 
   useEffect(() => {
     const web3 = new Web3()
-    const getGasInfo = async () => {
+    const getSafeCreationCosts = async () => {
       const gasInfo = await getGasPrice()
       if (gasInfo) {
-        const gasFastGWei = web3.utils.fromWei(gasInfo.fast, 'Gwei')
-        setGasPrice(gasFastGWei)
+        const gasPriceGwei = parseInt(
+          web3.utils.fromWei(gasInfo.fast.toString(), 'Gwei')
+        )
+        const estimatedSetupGas = await estimateSafeSetupGas()
+        const totalCostWei = (gasInfo.fast.toNumber() * estimatedSetupGas).toString()
+        const costEth = parseInt(web3.utils.fromWei(totalCostWei, 'ether'))
+        setCosts({ gasPriceGwei, estimatedSetupGas, costEth })
       }
     }
-    getGasInfo()
+    getSafeCreationCosts()
   }, [])
 
   useEffect(() => {
@@ -51,8 +63,8 @@ const App = () => {
       </header>
       <div className="calculatorContainer">
         <div className="calculator">
-          <h3>Safe configuration</h3>
-          <p>Number of owners:</p>
+          <p><b>Current gas price:</b> {costs && costs.gasPriceGwei + ' Gwei'}</p>
+          <p><b>Number of owners:</b></p>
           <input
             autoFocus
             type="number"
@@ -62,7 +74,18 @@ const App = () => {
           <button onClick={toggleCalcResult}>Get result</button>
         </div>
         <div className={calcResultClasses}>
-          <p><b>Gas price:</b> {gasPrice} Gwei</p>
+          {costs ? (
+            <>
+              <p>
+                <b>Estimated setup gas:</b> {costs.estimatedSetupGas} gas
+              </p>
+              <p>
+                <b>Total cost:</b> {costs.costEth} ETH
+              </p>
+            </>
+          ) : (
+            <p>Loading...</p>
+          )}
         </div>
       </div>
       <Footer />
