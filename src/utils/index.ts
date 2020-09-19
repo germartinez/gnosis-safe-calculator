@@ -18,7 +18,6 @@ export const generateAddresses = (numAddresses: number): string[] => {
     const address = web3.eth.accounts.create().address
     addresses.push(address)
   }
-  console.log(addresses)
   return addresses
 }
 
