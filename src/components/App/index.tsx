@@ -1,59 +1,43 @@
 import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
-import Web3 from 'web3'
+import { BigNumber } from 'bignumber.js'
 import Footer from '../Footer'
 import { getGasPrice } from '../../logic/gasOperations'
 import { estimateSafeSetupGas } from '../../logic/contractOperations'
 import './styles.scss'
-
-interface Costs {
-  gasPriceGwei: number
-  estimatedSetupGas: number
-  costEth: number
-}
+import { fromWeiToEther, fromWeiToGwei, getWeb3 } from '../../utils'
 
 const App = () => {
-  const [showCalcResult, setShowCalcResult] = useState<boolean>(false)
   const [numOwners, setNumOwners] = useState<number>(0)
-  const [costs, setCosts] = useState<undefined | Costs>(undefined)
+  const [gasPrice, setGasPrice] = useState<undefined | BigNumber>(undefined)
+  const [estimatedSetupGas, setEstimatedSetupGas] = useState<undefined | BigNumber>(undefined)
+  const [costWei, setCostWei] = useState<undefined | BigNumber>(undefined)
 
   useEffect(() => {
-    const web3 = new Web3()
-    const getSafeCreationCosts = async () => {
+    const initializeGasPrice = async () => {
       const gasInfo = await getGasPrice()
-      if (gasInfo) {
-        const gasPriceGwei = parseInt(
-          web3.utils.fromWei(gasInfo.fast.toString(), 'Gwei')
-        )
-        const estimatedSetupGas = await estimateSafeSetupGas()
-        const totalCostWei = (gasInfo.fast.toNumber() * estimatedSetupGas).toString()
-        const costEth = parseInt(web3.utils.fromWei(totalCostWei, 'ether'))
-        setCosts({ gasPriceGwei, estimatedSetupGas, costEth })
-      }
+      if (!gasInfo) return
+      setGasPrice(new BigNumber(gasInfo.fast.toString()))
     }
-    getSafeCreationCosts()
+    initializeGasPrice()
   }, [])
 
   useEffect(() => {
-    if (showCalcResult) {
-      setShowCalcResult(false)
-    }
-  }, [numOwners])
-
-  const toggleCalcResult = () => {
-    if (!showCalcResult && numOwners && numOwners > 0) {
-      setShowCalcResult(true)
-    }
-  }
+    if (!gasPrice) return
+    if (!estimatedSetupGas) return
+    const currentCostWei = gasPrice.multipliedBy(estimatedSetupGas)
+    setCostWei(currentCostWei)
+  }, [gasPrice, estimatedSetupGas])
 
   const handleNumOwnersChange = (event: any) => {
     setNumOwners(parseInt(event.target.value))
   }
 
-  const calcResultClasses = classNames({
-    calcResult: true,
-    showCalcResult: showCalcResult
-  })
+  const getSafeCreationCosts = async () => {
+    if (!gasPrice ||  numOwners <= 0) return
+    const currentEstimatedSetupGas = await estimateSafeSetupGas(numOwners)
+    setEstimatedSetupGas(currentEstimatedSetupGas)
+  }
 
   return (
     <div className="container">
@@ -63,7 +47,7 @@ const App = () => {
       </header>
       <div className="calculatorContainer">
         <div className="calculator">
-          <p><b>Current gas price:</b> {costs && costs.gasPriceGwei + ' Gwei'}</p>
+          <p><b>Current gas price:</b> {gasPrice && fromWeiToGwei(gasPrice).toString() + ' Gwei'}</p>
           <p><b>Number of owners:</b></p>
           <input
             autoFocus
@@ -71,21 +55,15 @@ const App = () => {
             value={numOwners || ''}
             onChange={handleNumOwnersChange}
           />
-          <button onClick={toggleCalcResult}>Get result</button>
+          <button onClick={getSafeCreationCosts}>Get result</button>
         </div>
-        <div className={calcResultClasses}>
-          {costs ? (
-            <>
-              <p>
-                <b>Estimated setup gas:</b> {costs.estimatedSetupGas} gas
-              </p>
-              <p>
-                <b>Total cost:</b> {costs.costEth} ETH
-              </p>
-            </>
-          ) : (
-            <p>Loading...</p>
-          )}
+        <div className="calcResult">
+          <p>
+            <b>Estimated setup gas:</b> {estimatedSetupGas && estimatedSetupGas.toString()} gas
+          </p>
+          <p>
+            <b>Total cost:</b> {costWei && fromWeiToEther(costWei).toString()} ETH
+          </p>
         </div>
       </div>
       <Footer />

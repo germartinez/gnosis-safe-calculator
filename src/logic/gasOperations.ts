@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import { mainnetConfig } from '../config'
 
-interface GasInfo {
+export interface GasInfo {
   lastUpdate: BigNumber
   lowest: BigNumber
   safeLow: BigNumber

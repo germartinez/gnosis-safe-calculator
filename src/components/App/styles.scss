@@ -22,7 +22,6 @@ header {
 }
 
 .calculator {
-  position: absolute;
   background: #FFFFFF;
   border-radius: 20px;
   box-shadow: 0 0 10px 0 rgba(33, 48, 77, 0.10);
@@ -83,27 +82,11 @@ button:hover {
 }
 
 .calcResult {
-  position: absolute;
-  display: block;
-  background: #FAFAFA;
   overflow: hidden;
   border-radius: 0 0 20px 20px;
-  box-shadow: 0 0 10px 0 rgba(33, 48, 77, 0.1);
   padding: 30px;
   padding-top: 50px;
   width: 100%;
-  top: 30px;
   height: 200px;
-  z-index: 99;
-  transition: background-color 0.5s linear, top 0.3s linear, height 0.3s linear;
-}
-
-.dark-mode .calcResult {
-  background: #333333;
-  box-shadow: none;
-}
-
-.showCalcResult {
-  top: 180px;
-  height: 350px;
+  transition: background-color 0.5s linear;
 }
