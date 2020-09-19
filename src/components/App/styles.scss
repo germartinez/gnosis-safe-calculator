@@ -93,6 +93,53 @@ button:hover {
   margin: 20px 5px 0 5px;
 }
 
+/* width */
+.calcResults::-webkit-scrollbar {
+  width: 10px;
+  transition: all 1s linear;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #DDDDDD;
+  border-radius: 10px;
+  transition: background-color 0.5s linear;
+  display: none;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+  background: #333333;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #FFFFFF;
+  border-radius: 10px;
+  transition: background-color 0.5s linear;
+  display: none;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: #555555;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #AAAAAA;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: #666666;
+}
+
+.calcResults:hover::-webkit-scrollbar-track {
+  display: block;
+}
+
+.calcResults:hover::-webkit-scrollbar-thumb {
+  display: block;
+}
+
 .calcResults > div:hover {
   opacity: 1;
   color: #008C73;
@@ -102,22 +149,31 @@ button:hover {
   color: #AAAAAA;
 }
 
-.currentCalcResult {
-  --border: 1px solid blue;
-  display: flex;
-  padding: 12px 0;
-  justify-content: center;
-}
-
-.dark-mode .currentCalcResult {
-  --color: #DDDDDD;
-}
-
 .calcResult {
   --border: 1px solid green;
   display: flex;
   padding: 12px 0;
   justify-content: center;
+}
+
+.calcResults > :nth-child(1) {
+  opacity: 1;
+}
+
+.calcResults > :nth-child(2) {
+  opacity: 0.4;
+}
+
+.calcResults > :nth-child(3) {
+  opacity: 0.2;
+}
+
+.calcResults > :nth-child(4) {
+  opacity: 0.1;
+}
+
+.calcResults > :nth-child(n+4) {
+  opacity: 0.08;
 }
 
 .owners {
@@ -150,40 +206,4 @@ button:hover {
 
 .gasUsed {
   font-size: 13px;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #DDDDDD;
-  border-radius: 10px;
-  transition: background-color 0.5s linear
-}
-
-.dark-mode ::-webkit-scrollbar-track {
-  background: #333333;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #BBBBBB;
-  border-radius: 10px;
-  transition: background-color 0.5s linear
-}
-
-.dark-mode ::-webkit-scrollbar-thumb {
-  background: #555555;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #AAAAAA;
-}
-
-.dark-mode ::-webkit-scrollbar-thumb:hover {
-  background: #666666;
 }
