@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { BigNumber } from 'bignumber.js'
 import Footer from '../Footer'
-import { getGasPrice } from '../../logic/gasOperations'
-import { estimateSafeSetupGas } from '../../logic/contractOperations'
-import './styles.scss'
+import { estimateGasSafeCreation, getGasPrice } from '../../logic/gasOperations'
 import { fromWeiToEther, fromWeiToGwei } from '../../utils'
+import './styles.scss'
 
 interface History {
   numOwners: number
@@ -31,14 +30,14 @@ const App = () => {
   }
 
   const getSafeCreationCosts = async () => {
-    if (!gasPrice ||  currentNumOwners <= 0) return
-    const currentEstimatedSetupGas = await estimateSafeSetupGas(currentNumOwners)
-    const currentCostWei = gasPrice.multipliedBy(currentEstimatedSetupGas)
-    setHistory(prevHistory => [
+    if (!gasPrice || currentNumOwners <= 0) return
+    const currentCreationGas = await estimateGasSafeCreation(currentNumOwners)
+    if (!currentCreationGas) return
+    setHistory((prevHistory) => [
       {
         numOwners: currentNumOwners,
-        gasUsed: currentEstimatedSetupGas,
-        costWei: currentCostWei
+        gasUsed: currentCreationGas.gas,
+        costWei: currentCreationGas.payment
       },
       ...prevHistory
     ])
@@ -52,8 +51,13 @@ const App = () => {
       </header>
       <div className="calculatorContainer">
         <div className="calculator">
-          <p><b>Gas price:</b> {gasPrice && fromWeiToGwei(gasPrice).toString() + ' Gwei'}</p>
-          <p><b>Number of owners:</b></p>
+          <p>
+            <b>Gas price:</b>{' '}
+            {gasPrice && fromWeiToGwei(gasPrice).toString() + ' Gwei'}
+          </p>
+          <p>
+            <b>Number of owners:</b>
+          </p>
           <input
             autoFocus
             type="number"
@@ -63,26 +67,23 @@ const App = () => {
           <button onClick={getSafeCreationCosts}>Get result</button>
         </div>
         <div className="calcResults">
-          {history && history.map((h, index) => (
-            <div
-              key={index}
-              className={index === 0 ? "currentCalcResult" : "calcResult"}
-              style={{opacity: 1 / (index * 3)}}
-            >
-              <div className="owners">
-              <div className="ownersValue">{h.numOwners}</div>
-                <div className="ownersLabel">owner{h.numOwners > 1 && 's'}</div>
-              </div>
-              <div className="cost">
-                <div className="costEth">
-                  {fromWeiToEther(h.costWei).toString()} ETH
+          {history &&
+            history.map((h, index) => (
+              <div key={index} className="calcResult">
+                <div className="owners">
+                  <div className="ownersValue">{h.numOwners}</div>
+                  <div className="ownersLabel">
+                    owner{h.numOwners > 1 && 's'}
+                  </div>
                 </div>
-                <div className="gasUsed">
-                  {h.gasUsed.toString()} gas used
+                <div className="cost">
+                  <div className="costEth">
+                    {fromWeiToEther(h.costWei).toString()} ETH
+                  </div>
+                  <div className="gasUsed">{h.gasUsed.toString()} gas used</div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
       <Footer />

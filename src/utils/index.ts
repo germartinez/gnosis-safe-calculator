@@ -9,17 +9,7 @@ const getInfuraUrl = () => {
   return `https://mainnet.infura.io:443/v3/${process.env.REACT_APP_INFURA_TOKEN}`
 }
 
-export const getWeb3 = () => web3 ? web3 : new Web3(getInfuraUrl())
-
-export const generateAddresses = (numAddresses: number): string[] => {
-  const web3 = getWeb3()
-  const addresses: string[] = []
-  for(let i = 0; i < numAddresses; i++) {
-    const address = web3.eth.accounts.create().address
-    addresses.push(address)
-  }
-  return addresses
-}
+export const getWeb3 = () => (web3 ? web3 : new Web3(getInfuraUrl()))
 
 export const fromWeiToGwei = (weiAmount: BigNumber): BigNumber => {
   const web3 = getWeb3()
