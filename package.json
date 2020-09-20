@@ -1,6 +1,6 @@
 {
   "name": "gnosis-safe-calculator",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "homepage": "https://germartinez.github.io/gnosis-safe-calculator/",
   "private": true,
   "dependencies": {
