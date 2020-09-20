@@ -41,6 +41,10 @@ body.dark-mode {
 h1 {
   color: #008C73;
   font-size: 55px;
+  @media only screen and (max-width: 600px) {
+    font-size: 30px;
+    text-align: center;
+  }
 }
 
 .dark-mode h1 {
@@ -50,6 +54,10 @@ h1 {
 h2 {
   color: #001428;
   font-size: 35px;
+  @media only screen and (max-width: 600px) {
+    font-size: 25px;
+    text-align: center;
+  }
 }
 
 .dark-mode h2 {

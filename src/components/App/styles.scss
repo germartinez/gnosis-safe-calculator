@@ -5,6 +5,10 @@ header {
   justify-content: space-between;
   min-height: 150px;
   margin-bottom: 50px;
+  @media only screen and (max-width: 600px) {
+    justify-content: center;
+    margin-bottom: 0;
+  }
 }
 
 .container {
@@ -13,12 +17,20 @@ header {
   flex-flow: column;
   align-items: center;
   padding: 40px;
+  @media only screen and (max-width: 600px) {
+    padding: 10px; 
+  }
 }
 
 .calculatorContainer {
   position: relative;
   width: 500px;
   height: 570px;
+  @media only screen and (max-width: 600px) {
+    width: 100%; 
+    height: auto;
+    margin-bottom: 30px;
+  }
 }
 
 .calculator {
@@ -27,8 +39,10 @@ header {
   box-shadow: 0 0 10px 0 rgba(33, 48, 77, 0.10);
   padding: 20px 30px 30px 30px;
   width: 100%;
-  z-index: 100;
   transition: background-color 0.5s linear;
+  @media only screen and (max-width: 600px) {
+    padding: 10px 20px 20px 20px;
+  }
 }
 
 .dark-mode .calculator {
@@ -45,6 +59,11 @@ input[type="number"] {
   font-size: 20px;
   outline: none;
   transition: background-color 0.5s linear, border 0.5s linear, color 0.5s linear;
+
+  @media only screen and (max-width: 600px) {
+    width: 100%; 
+    padding: 10px;
+  }
 }
 
 input[type=number]::-webkit-inner-spin-button {
@@ -72,6 +91,12 @@ button {
   outline: none;
   cursor: pointer;
   transition: opacity 0.5s linear;
+  @media only screen and (max-width: 600px) {
+    float: none;
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+  }
 }
 
 .dark-mode button {
@@ -91,6 +116,9 @@ button:hover {
   overflow: auto;
   height: 320px;
   margin: 20px 5px 0 5px;
+  @media only screen and (max-width: 600px) {
+    height: auto;
+  }
 }
 
 /* width */
