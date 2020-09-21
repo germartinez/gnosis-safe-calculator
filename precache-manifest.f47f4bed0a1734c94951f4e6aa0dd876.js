@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5eb20be3bc2083bf1c5f3819c6949078",
+    "revision": "64fada14bfb085b5ee4c7a21648d4905",
     "url": "/gnosis-safe-calculator/index.html"
   },
   {
