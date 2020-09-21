@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/gnosis-safe-calculator/static/css/main.516d516c.chunk.css",
+    "main.css": "/gnosis-safe-calculator/static/css/main.531c715d.chunk.css",
     "main.js": "/gnosis-safe-calculator/static/js/main.1dbdb5db.chunk.js",
     "main.js.map": "/gnosis-safe-calculator/static/js/main.1dbdb5db.chunk.js.map",
     "runtime-main.js": "/gnosis-safe-calculator/static/js/runtime-main.4ff601b5.js",
@@ -8,16 +8,16 @@
     "static/js/2.4cff0e39.chunk.js": "/gnosis-safe-calculator/static/js/2.4cff0e39.chunk.js",
     "static/js/2.4cff0e39.chunk.js.map": "/gnosis-safe-calculator/static/js/2.4cff0e39.chunk.js.map",
     "index.html": "/gnosis-safe-calculator/index.html",
-    "precache-manifest.ebba0a5c7271e64fee041b0c63217a5d.js": "/gnosis-safe-calculator/precache-manifest.ebba0a5c7271e64fee041b0c63217a5d.js",
+    "precache-manifest.ae5cbab6d0f54996dfc6c8f18c7d1bb4.js": "/gnosis-safe-calculator/precache-manifest.ae5cbab6d0f54996dfc6c8f18c7d1bb4.js",
     "service-worker.js": "/gnosis-safe-calculator/service-worker.js",
-    "static/css/main.516d516c.chunk.css.map": "/gnosis-safe-calculator/static/css/main.516d516c.chunk.css.map",
+    "static/css/main.531c715d.chunk.css.map": "/gnosis-safe-calculator/static/css/main.531c715d.chunk.css.map",
     "static/js/2.4cff0e39.chunk.js.LICENSE.txt": "/gnosis-safe-calculator/static/js/2.4cff0e39.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/gnosis-safe-calculator/static/media/Averta-normal.30559e37.woff2"
   },
   "entrypoints": [
     "static/js/runtime-main.4ff601b5.js",
     "static/js/2.4cff0e39.chunk.js",
-    "static/css/main.516d516c.chunk.css",
+    "static/css/main.531c715d.chunk.css",
     "static/js/main.1dbdb5db.chunk.js"
   ]
 }

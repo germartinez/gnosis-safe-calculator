@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "efd89d04a830e7eb409e7f69f1175069",
+    "revision": "4bb6eae424e26e80f80d8fb5fb127e4b",
     "url": "/gnosis-safe-calculator/index.html"
   },
   {
-    "revision": "fccbc38dc8b5b57685de",
-    "url": "/gnosis-safe-calculator/static/css/main.516d516c.chunk.css"
+    "revision": "84f750b7c910e5c1e76d",
+    "url": "/gnosis-safe-calculator/static/css/main.531c715d.chunk.css"
   },
   {
     "revision": "3034f848b2ed9ed08587",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gnosis-safe-calculator/static/js/2.4cff0e39.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fccbc38dc8b5b57685de",
+    "revision": "84f750b7c910e5c1e76d",
     "url": "/gnosis-safe-calculator/static/js/main.1dbdb5db.chunk.js"
   },
   {

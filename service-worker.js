@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/gnosis-safe-calculator/precache-manifest.ebba0a5c7271e64fee041b0c63217a5d.js"
+  "/gnosis-safe-calculator/precache-manifest.ae5cbab6d0f54996dfc6c8f18c7d1bb4.js"
 );
 
 self.addEventListener('message', (event) => {
